@@ -1,8 +1,0 @@
-[profile.default]
-auto_detect_remappings = true # recursive auto-detection of remappings
-auto_detect_solc = true 
-libs = ["lib"] 
-out = "out" 
-# remappings = ["@openzeppelin=/lib/openzeppelin-contracts/contracts"] 
-src = "src"
-# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
