@@ -8,10 +8,10 @@ import {SignatureChecker} from "@openzeppelin/contracts/utils/cryptography/Signa
 import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
 import {EIP712} from "@openzeppelin/contracts/utils/cryptography/EIP712.sol";
 import {Nonces} from "@openzeppelin/contracts/utils/Nonces.sol";
-import {IWETH} from "../interfaces/IWETH.sol";
+import {IWETH} from "./interfaces/IWETH.sol";
 
-import {IMigrator} from "../interfaces/IMigrator.sol";
-import {IMaximizer} from "../interfaces/IMaximizer.sol";
+import {IMigrator} from "./interfaces/IMigrator.sol";
+import {IMaximizer} from "./interfaces/IMaximizer.sol";
 
 /// @title Maximizer
 /// @notice Maximizer is the contract which maximizes the yield of the LST/LRT/Wrapped ETH tokens provided by the users.
