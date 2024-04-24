@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity=0.8.24;
+pragma solidity =0.8.24;
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
@@ -234,8 +234,10 @@ contract Maximizer is IMaximizer, Ownable2Step, Pausable, EIP712, Nonces {
         uint256[] memory _amounts
     ) internal {
         uint256 length = _tokens.length;
+        uint256[] memory initialBalances = new uint256[](length);
         //effects for-loop (state changes)
         for (uint256 i; i < length; ++i) {
+            initialBalances[i] = IERC20(_tokens[i]).balanceOf(address(this));
             //if the balances has been already set to zero, then _tokens[i] is a duplicate of a previous token in the array
             if (balances[_tokens[i]][_user] == 0) revert DuplicateToken();
 
@@ -262,6 +264,14 @@ contract Maximizer is IMaximizer, Ownable2Step, Pausable, EIP712, Nonces {
             _destination,
             _amounts
         );
+
+        for (uint256 i; i < length; ++i) {
+            uint256 finalBalance = IERC20(_tokens[i]).balanceOf(address(this));
+            require(
+                finalBalance == initialBalances[i],
+                "Balance mismatch after migration"
+            );
+        }
     }
 
     /*//////////////////////////////////////////////////////////////
