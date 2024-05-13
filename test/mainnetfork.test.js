@@ -40,7 +40,7 @@ describe("Maximizer Deposit on Forked Mainnet", function () {
         console.log("await maximizer.getAddress():", maximizerAddress);
     });
 
-    it.only("should allow ETH deposit from an impersonated account", async function () {
+    it("should allow ETH deposit from an impersonated account", async function () {
         const depositAmount = "100";
         console.log(2);
         // await maximizer.unpause();
