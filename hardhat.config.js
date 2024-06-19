@@ -7,7 +7,16 @@ module.exports = {
   sourcify: {
     enabled: true
   },
-  solidity: "0.8.24",
+  solidity: {
+    version: "0.8.24",
+    settings: {
+      evmVersion: "shanghai",
+      optimizer: {
+        enabled: true,
+        runs: 200
+      }
+    }
+  },
   networks: {
     hardhat: {
       allowUnlimitedContractSize: false,
@@ -25,8 +34,8 @@ module.exports = {
       loggingEnabled: true,
       timeout: 10800000
     },
-    mumbai: {
-      url: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.MUMBAI_ALCHEMY_API_KEY}`,
+    mainnet: {
+      url: `https://eth-mainnet.g.alchemy.com/v2/${process.env.MAINNET_ALCHEMY_API_KEY}`,
       accounts: [`0x${process.env.PRIVATE_KEY}`],
       throwOnTransactionFailures: true,
       loggingEnabled: true,
@@ -34,30 +43,9 @@ module.exports = {
     },
   },
   etherscan: {
-    // Your API key for Etherscan
-    // Obtain one at https://etherscan.io/
     apiKey: {
-      goerli: process.env['ETHERSCAN_API_KEY'],
       sepolia: process.env['ETHERSCAN_API_KEY'],
-      polygonMumbai: process.env['POLYGON_API_KEY'],
+      mainnet: process.env['ETHERSCAN_API_KEY']
     }
-  },
-  customChains: [
-    {
-      network: 'arbitrumTestnet',
-      chainId: 421614,
-      urls: {
-        apiURL: 'https://api-sepolia.arbiscan.io/api',
-        browserURL: 'https://sepolia.arbiscan.io/',
-      },
-    },
-    {
-      network: 'baseSepolia',
-      chainId: 84532,
-      urls: {
-        apiURL: 'https://api-sepolia.basescan.org/api',
-        browserURL: 'https://basescan.org/',
-      },
-    },
-  ]
+  }
 };
